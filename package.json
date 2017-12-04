@@ -1,0 +1,23 @@
+{
+  "name": "fixedtable",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "faker": "^4.1.0",
+    "fixed-data-table": "^0.6.5",
+    "fixed-data-table-2": "^0.8.6",
+    "immutable": "^3.8.2",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.0.17",
+    "react-tooltip": "^3.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
