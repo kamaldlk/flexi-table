@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Flexigrid from './flexigrid';
+import FlexiTable from './flexitable';
 
-ReactDOM.render(<Flexigrid />, document.getElementById('root'));
+ReactDOM.render(<FlexiTable />, document.getElementById('root'));

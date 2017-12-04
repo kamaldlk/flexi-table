@@ -7,7 +7,7 @@ import 'fixed-data-table-2/dist/fixed-data-table.css';
 const ObjectUtil = require('./helpers/ObjectUtil');
 const { TextCell, ColoredTextCell } = require('./helpers/cells');
 
-class Flexigrid extends Component {
+class FlexiTable extends Component {
   longClickTimer = null;
   data = {
     "Columns": [
@@ -183,4 +183,4 @@ class Flexigrid extends Component {
   }
 }
 
-export default Flexigrid;
+export default FlexiTable;
