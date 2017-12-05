@@ -1,0 +1,16 @@
+{
+    "extends" : ["react", "react-app", "plugin:react/recommended"],
+    "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        }
+    },
+    "rules":{
+        "indent" : [2, 2],
+        "space-before-function-paren": ["error", "never"],
+        "keyword-spacing": [0],
+        "react/jsx-curly-spacing": [0],
+        "react/jsx-boolean-value":[0],
+        "new-cap":[0]
+    }
+}

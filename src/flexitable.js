@@ -3,7 +3,7 @@ import Immutable, { fromJS } from 'immutable';
 import _ from 'lodash';
 import {Table, Column, Cell} from 'fixed-data-table-2';
 import 'fixed-data-table-2/dist/fixed-data-table.css';
-
+import './css/index.css';
 const ObjectUtil = require('./helpers/ObjectUtil');
 const { TextCell, ColoredTextCell } = require('./helpers/cells');
 
@@ -172,7 +172,7 @@ class FlexiTable extends Component {
         rowHeight={50}
         headerHeight={50}
         rowsCount={this.state.dataList.getSize()}
-        width={1000}
+        width={600}
         height={500}
         onRowMouseDown={(event, rowIndex) => { this.handleRowMouseDown(rowIndex); }}
         onRowMouseUp={(event, rowIndex) => { this.handleRowMouseUp(rowIndex); }}
