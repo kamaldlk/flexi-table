@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'; 
 import tinycolor from 'tinycolor2';
-import Styles from '../stylecomponent';
+import Styles from '../stylecomponent/index.css';
 
 class RowIndex extends React.Component {
 
@@ -47,7 +47,7 @@ RowIndex.propTypes = {
 };
 
 RowIndex.defaultProps = {
-  selectedFactor: Styles.Colors.selectedFactor
+  selectedFactor: 12
 };
 
 export default RowIndex;

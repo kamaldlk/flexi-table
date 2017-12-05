@@ -13,7 +13,7 @@ import validator from './wrapper/validator';
 import AutoPosition from './wrapper/auto.position';
 import ErrorBox from './wrapper/error.box';
 import Menu from './wrapper/context.menu';
-import Styles from './stylecomponent';
+import Styles from './stylecomponent/index.css';
 import 'fixed-data-table-2/dist/fixed-data-table.css';
 import './css/index.css';
 const ObjectUtil = require('./helpers/ObjectUtil');
@@ -184,7 +184,7 @@ class FlexiTable extends Component {
       this.longClickTimer = null;
     }
   }
-
+  
   getColumns() {
     let columns = [];
     this.data.Columns.forEach(column => {
@@ -197,8 +197,7 @@ class FlexiTable extends Component {
           header={<Cell>{column.name}</Cell>}
           cell={cell => this.getCell(cell.rowIndex, cell.columnKey)}
           width={100}
-          headerRenderer={ this.__indexHeaderRenderer }
-          cellRenderer={ this.__indexRenderer }
+         
         />);
     });
     return columns;
@@ -224,7 +223,13 @@ class FlexiTable extends Component {
   }
 
   render() {
+    var styles = Object.assign({},Styles.FullSize,Styles.Sheet.base)
     return (
+      <div
+      ref='base'
+      style={styles}
+      tabIndex='0'>
+      <Autosize>
       <Table
         rowHeight={50}
         headerHeight={50}
@@ -236,6 +241,8 @@ class FlexiTable extends Component {
         {...this.props}>
         {this.state.columns}
       </Table>
+      </Autosize>
+      </div>
     );
   }
 }
@@ -255,7 +262,8 @@ FlexiTable.propTypes = {
 FlexiTable.defaultProps = {
   defaultData: [],
   rowCount: 10,
-  rowHeight: 32
+  rowHeight: 32,
+  columns:[]
 };
 
 export default FlexiTable;

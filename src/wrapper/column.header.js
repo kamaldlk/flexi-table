@@ -1,7 +1,7 @@
 import React from 'react';
 import tinycolor from 'tinycolor2';
 import PropTypes from 'prop-types';
-import Styles from '../stylecomponent';
+import Styles from '../stylecomponent/index.css';
 
 class ColumnHeader extends React.Component {
 
@@ -46,7 +46,7 @@ ColumnHeader.propTypes = {
 };
 
 ColumnHeader.defaultProps = {
-  selectedFactor: Styles.Colors.selectedFactor
+  selectedFactor: 12
 };
 
 export default ColumnHeader;

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
-import Styles from '../stylecomponent';
+import Styles from '../stylecomponent/index.css';
 import { isEqualObject } from './helper';
 
 class CellAction extends React.Component {
@@ -149,7 +149,7 @@ class CellAction extends React.Component {
     const hasPrevColumn = this.props.hasPrevColumn;
     const error = this.props.error;
 
-    const styles = [Styles.CellAction.input];
+    const styles = [Styles.CellAction.inputField];
 
     if (!editing) {
       styles.push(Styles.Unselectable);
@@ -157,7 +157,7 @@ class CellAction extends React.Component {
     }
 
     //  Background color
-    const highlightFactor = Styles.Colors.highlightFactor;
+    const highlightFactor = 0.2;
     let background;
     if (selected && error) {
       background = tinycolor.mix(tinycolor(Styles.Colors.danger), tinycolor(Styles.Colors.primary), 30);

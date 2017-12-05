@@ -1,0 +1,5 @@
+.unselectable {
+  outline: 'none';
+  userSelect: 'none';
+  cursor: 'default';
+}

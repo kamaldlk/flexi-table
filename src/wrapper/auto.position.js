@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import Styles from '../stylecomponent/';
+import Styles from '../stylecomponent/auto.position.css';
 
 class AutoPosition extends React.Component {
 
