@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "clipboard-js": "^0.3.6",
     "faker": "^4.1.0",
     "fixed-data-table": "^0.6.5",
     "fixed-data-table-2": "^0.8.6",
@@ -12,7 +13,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
-    "react-tooltip": "^3.4.0"
+    "react-tooltip": "^3.4.0",
+    "tinycolor2": "^1.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'; 
+import PropTypes from 'prop-types';
 import Immutable, { fromJS } from 'immutable';
 import _ from 'lodash';
+import clipboard from 'clipboard-js';
 import {Table, Column, Cell} from 'fixed-data-table-2';
+import Autosize from './wrapper/auto.zise';
+import RowIndex from './wrapper/row.index';
+import ColumnHeader from './wrapper/column.header';
+import CellAction from './wrapper/cell.action';
+import validator from './wrapper/validator';
+import AutoPosition from './wrapper/auto.position';
+import ErrorBox from './wrapper/error.box';
+import Menu from './wrapper/context.menu';
+import Styles from './stylecomponent';
 import 'fixed-data-table-2/dist/fixed-data-table.css';
 import './css/index.css';
 const ObjectUtil = require('./helpers/ObjectUtil');
@@ -15,7 +27,7 @@ class FlexiTable extends Component {
         "key": "Id",
         "name": "Id",
         "width": 80,
-        "resizable": true,
+        "resizable": true,  
         "locked": true
       },
       {
@@ -110,6 +122,49 @@ class FlexiTable extends Component {
     };
   }
 
+  componentWillMount () {
+    window.addEventListener('mouseup', this._handleGlobalMouseUp);
+    window.addEventListener('keydown', this._handleKeyDown);
+    window.addEventListener('paste', this._handlePaste);
+    window.addEventListener('copy', this._handleCopy);
+    window.addEventListener('cut', this._handleCut);
+    window.addEventListener('beforecopy', this._preventDefault);
+    window.addEventListener('click', this._handleBaseClick);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('mouseup', this._handleGlobalMouseUp);
+    window.removeEventListener('keydown', this._handleKeyDown);
+    window.removeEventListener('paste', this._handlePaste);
+    window.removeEventListener('copy', this._handleCopy);
+    window.removeEventListener('cut', this._handleCut);
+    window.removeEventListener('beforecopy', this._preventDefault);
+    window.removeEventListener('click', this._handleBaseClick);
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    const data = this.state.data;
+    const previousData = this.__history[this.__historyIndex - 1];
+    if (prevState.data !== data && previousData !== data){
+
+      let foundChanges = false;
+      for (let i = 0; i < data.size; i++){
+        if (data.get(i).get('data') !== previousData.get(i).get('data')){
+          foundChanges = true;
+          break;
+        }
+      }
+
+      if (!foundChanges) {
+        return;
+      }
+
+      this.__history = this.__history.splice(0, this.__historyIndex );
+      this.__history.push(this.state.data);
+      this.__historyIndex = this.__history.length;
+    }
+  }
+
   handleRowMouseDown(rowIndex) {
     this.cancelLongClick();
     this.longClickTimer = setTimeout(() => {
@@ -142,11 +197,13 @@ class FlexiTable extends Component {
           header={<Cell>{column.name}</Cell>}
           cell={cell => this.getCell(cell.rowIndex, cell.columnKey)}
           width={100}
+          headerRenderer={ this.__indexHeaderRenderer }
+          cellRenderer={ this.__indexRenderer }
         />);
     });
     return columns;
   }
-
+ 
   getCell(rowIndex, columnKey) {
     let isCellHighlighted = this.state.longPressedRowIndex === rowIndex;
       
@@ -172,7 +229,7 @@ class FlexiTable extends Component {
         rowHeight={50}
         headerHeight={50}
         rowsCount={this.state.dataList.getSize()}
-        width={600}
+        width={1300}
         height={500}
         onRowMouseDown={(event, rowIndex) => { this.handleRowMouseDown(rowIndex); }}
         onRowMouseUp={(event, rowIndex) => { this.handleRowMouseUp(rowIndex); }}
@@ -182,5 +239,23 @@ class FlexiTable extends Component {
     );
   }
 }
+
+FlexiTable.propTypes = {
+  defaultData: PropTypes.array,
+  rowCount: PropTypes.number,
+  columns: PropTypes.array.isRequired,
+  rowValidator: PropTypes.func,
+  getCellStyle: PropTypes.func,
+  getRowHeaderStyle: PropTypes.func,
+  getColumnHeaderStyle: PropTypes.func,
+  getCellErrorStyle: PropTypes.func,
+  rowHeight: PropTypes.number
+};
+
+FlexiTable.defaultProps = {
+  defaultData: [],
+  rowCount: 10,
+  rowHeight: 32
+};
 
 export default FlexiTable;
