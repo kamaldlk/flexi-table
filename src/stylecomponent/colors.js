@@ -8,7 +8,6 @@ export default {
   lightgrey: '#f3f3f3',
   grey: '#eee',
   dark: '#333',
-
   selectedFactor: 12,
   highlightFactor: 0.2
 };

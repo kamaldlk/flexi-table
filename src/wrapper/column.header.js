@@ -28,13 +28,12 @@ class ColumnHeader extends React.Component {
   }
 
   render () {
-    console.log('this.props.column.label',this.props.column.label)
+    const {getStyle,selectedFactor, ...props} = this.props;
     return (
       <div
-        { ...this.props }
-        
+        { ...props }
         style={ this._getStyle() }>
-        { this.props.column.label || this.props.column.columnKey}
+        { this.props.column.label || this.props.column.columnKey }
       </div>
     );
   }

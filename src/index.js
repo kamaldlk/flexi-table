@@ -94,8 +94,8 @@ import FlexiTable from './flexi.table';
 //   };
 
 var columns = [
-  { label: 'ID Number', columnKey: 'id_no', required: true, fixed: true },
-  { label: 'Employee Name', columnKey: 'name', required: true, fixed: true, width: 150 },
+  { label: 'ID Number', columnKey: 'id_no', required: false, fixed: true },
+  { label: 'Employee Name', columnKey: 'name', required: false, fixed: true, width: 150 },
   { label: 'Job Title', columnKey: 'jobTitle'},
   { label: 'Email Address', columnKey: 'email'} ,
   { label: 'Salary', columnKey: 'salary' }

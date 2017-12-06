@@ -6,7 +6,7 @@ import Styles from '../stylecomponent';
 
 class RowIndex extends React.Component {
 
-  getStyle = () => {
+  _getStyle = () => {
     const selected = this.props.selected;
     const errors = this.props.errors;
     const hasErrors = errors && Object.keys(errors).length > 0;
@@ -28,10 +28,11 @@ class RowIndex extends React.Component {
   }
 
   render () {
+    const {getStyle,selectedFactor, ...props} = this.props;
     return (
       <div
-        { ...this.props }
-        style={ this.getStyle() }>
+        { ...props }
+        style={ this._getStyle() }>
         { this.props.index == null ? '' : this.props.index + 1 }
       </div>
     );
@@ -48,7 +49,6 @@ RowIndex.propTypes = {
 };
 
 RowIndex.defaultProps = {
-  
   selectedFactor: Styles.Colors.selectedFactor
 };
 
