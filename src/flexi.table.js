@@ -273,8 +273,8 @@ class FlexiTable extends Component {
 
  
 
-  _cellDataGetter = (rowIndex, cellKey, row) => {
-    return row.get('data').get(cellKey);
+  _cellDataGetter = (rowIndex, columnKey, row) => {
+    return row.get('data').get(columnKey);
   }
 
   _setEditing = (editing, data) => {
@@ -554,6 +554,7 @@ class FlexiTable extends Component {
   }
 
   _handleDoubleClick = (e) => {
+    console.log('_setEditing',e)
     this._setEditing(true);
   }
 
@@ -880,7 +881,7 @@ class FlexiTable extends Component {
   /**
    * Rendering
    */
-  __indexHeaderRenderer = (column, rowIndex, cellKey, width, height) => {
+  __indexHeaderRenderer = (column, rowIndex, columnKey, width, height) => {
     return (
       <RowIndex
         selected={ column.__allSelected }
@@ -892,7 +893,7 @@ class FlexiTable extends Component {
 
   
 
-  __indexRenderer = (column, rowIndex, cellKey, row, width, height) => {
+  __indexRenderer = (column, rowIndex, columnKey, row, width, height) => {
     const selected = inBetween(rowIndex,
                         this.state.selection.startRow,
                         this.state.selection.endRow);
@@ -917,7 +918,7 @@ class FlexiTable extends Component {
     );
   }
 
-  _headerRenderer = (column, cellKey, height, width) => {
+  _headerRenderer = (column, columnKey, height, width) => {
     return (
       <ColumnHeader
         column={ column.get('column') }
@@ -937,8 +938,8 @@ class FlexiTable extends Component {
   }
 
 
-  _cellRenderer = (cellKey, row, rowIndex, column, width) => {
-   var cellData =  this.state.data.get(rowIndex).get('data').get(cellKey);
+  _cellRenderer = (columnKey, row, rowIndex, column, width) => {
+    const cellData =  this.state.data.get(rowIndex).get('data').get(columnKey);
     const columnData = column.get('column');
     const columnIndex = column.get('__index');
     const sel = row.get('selection') || {};
@@ -988,7 +989,7 @@ class FlexiTable extends Component {
         isRight={ isRight }
         isTop={ isTop }
         isBottom={ isBottom }
-        error={ errors[cellKey] }
+        error={ errors[columnKey] }
 
         isCopyLeft={ isCopyLeft && copySelectedRow }
         isCopyRight={ isCopyRight && copySelectedRow }
@@ -1001,7 +1002,7 @@ class FlexiTable extends Component {
         columnIndex={ columnIndex }
 
         getStyle={ this.props.getCellStyle }
-        onUpdate={ this._handleDataUpdate.bind(this, rowIndex, cellKey) }
+        onUpdate={ this._handleDataUpdate.bind(this, rowIndex, columnKey) }
 
         onMouseDown={this._handleGlobalMouseDown.bind(this, 'cell', {
           startRow: rowIndex,
@@ -1013,7 +1014,7 @@ class FlexiTable extends Component {
           endRow: rowIndex,
           endCol: column.get('__index')
         }) }
-        onMouseEnter={ errors[cellKey] ? this._handleCellMouseEnter.bind(this, errors[cellKey]) : null }
+        onMouseEnter={ errors[columnKey] ? this._handleCellMouseEnter.bind(this, errors[columnKey]) : null }
         onMouseLeave={ this._handleCellMouseLeave }
         onDoubleClick={this._handleDoubleClick}
         onContextMenu={ this._handleSelectionContextMenu } />
@@ -1194,7 +1195,6 @@ FlexiTable.propTypes = {
 
 FlexiTable.defaultProps = {
   defaultData: [],
-  rowCount: 10,
   rowHeight: 32,
   columns:[]
 };
