@@ -1182,7 +1182,6 @@ class FlexiTable extends Component {
     return this.state.data.get(i);
   }
   render() {
-    console.log('sssss',this.state);
     return (
       <div
       ref='base'
