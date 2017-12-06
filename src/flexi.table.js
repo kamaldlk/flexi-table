@@ -5,7 +5,7 @@ import Radium from 'radium';
 import Immutable, { fromJS } from 'immutable';
 import _ from 'lodash';
 import clipboard from 'clipboard-js';
-import {Table, Column, Cell} from 'fixed-data-table-2';
+import {Table, Column} from 'fixed-data-table-2';
 import Autosize from './wrapper/auto.zise';
 import RowIndex from './wrapper/row.index';
 import ColumnHeader from './wrapper/column.header';
@@ -19,8 +19,8 @@ import { inBetween, inBetweenArea, areaInBetweenArea, isInParent,
 import Styles from './stylecomponent';
 import 'fixed-data-table-2/dist/fixed-data-table.css';
 import './css/index.css';
-const ObjectUtil = require('./helpers/ObjectUtil');
-const { TextCell, ColoredTextCell } = require('./helpers/cells');
+//const ObjectUtil = require('./helpers/ObjectUtil');
+//const { TextCell, ColoredTextCell } = require('./helpers/cells');
 
 class FlexiTable extends Component {
   longClickTimer = null;
@@ -950,11 +950,11 @@ class FlexiTable extends Component {
 
     const prevRowFocused = (sel.startRow === rowIndex - 1) && (sel.startCol === columnIndex);
     const prevRowSelected = inBetweenArea(rowIndex - 1, columnIndex, sel.startRow, sel.endRow, sel.startCol, sel.endCol);
-    const hasPrevRow = prevRowSelected && (Math.max(sel.startRow, sel.endRow) === rowIndex - 1) || prevRowFocused;
+    const hasPrevRow = (prevRowSelected && (Math.max(sel.startRow, sel.endRow) === rowIndex - 1)) || prevRowFocused;
 
     const prevColumnFocused = (sel.startRow === rowIndex) && (sel.startCol === columnIndex - 1);
     const prevColumnSelected = inBetweenArea(rowIndex, columnIndex - 1, sel.startRow, sel.endRow, sel.startCol, sel.endCol);
-    const hasPrevColumn = prevColumnSelected && (Math.max(sel.startCol, sel.endCol) === columnIndex - 1) || prevColumnFocused;
+    const hasPrevColumn = (prevColumnSelected && (Math.max(sel.startCol, sel.endCol) === columnIndex - 1)) || prevColumnFocused;
 
     const isLeft = Math.min(sel.startCol, sel.endCol) === columnIndex;
     const isRight = Math.max(sel.startCol, sel.endCol) === columnIndex;
@@ -1076,25 +1076,25 @@ class FlexiTable extends Component {
     return columns;
   }
  
-  getCell(rowIndex, columnKey) {
-    let isCellHighlighted = this.state.longPressedRowIndex === rowIndex;
+  // getCell(rowIndex, columnKey) {
+  //   let isCellHighlighted = this.state.longPressedRowIndex === rowIndex;
       
-    let rowStyle = {
-      backgroundColor: isCellHighlighted ? 'yellow' : 'transparent',
-      width: '100%',
-      height: '100%'
-    } 
+  //   let rowStyle = {
+  //     backgroundColor: isCellHighlighted ? 'yellow' : 'transparent',
+  //     width: '100%',
+  //     height: '100%'
+  //   } 
    
-    return <TextCell style={rowStyle}
-      data={this.state.data}
-      rowIndex={rowIndex}
-      columnKey={columnKey}
-      columnKey={columnKey} />;
-  }
+  //   return <TextCell style={rowStyle}
+  //     data={this.state.data}
+  //     rowIndex={rowIndex}
+  //     columnKey={columnKey}
+  //     columnKey={columnKey} />;
+  // }
 
-  getSize() {
-    return this.size;
-  }
+  // getSize() {
+  //   return this.size;
+  // }
 
   _getErrorPopover () {
     const showError = this.state.showError;

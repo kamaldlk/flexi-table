@@ -51,10 +51,10 @@ class CellAction extends React.Component {
 
   _getEdges (sel, selected, focused) {
     return {
-      left: selected && this.props.isLeft || focused,
-      right: selected && this.props.isRight || focused,
-      top: selected && this.props.isTop || focused,
-      bottom: selected && this.props.isBottom || focused
+      left: (selected && this.props.isLeft) || focused,
+      right: (selected && this.props.isRight) || focused,
+      top: (selected && this.props.isTop) || focused,
+      bottom: (selected && this.props.isBottom) || focused
     };
   }
 

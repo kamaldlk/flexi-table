@@ -2,7 +2,7 @@
  * Copyright Schrodinger, LLC
  */
 
-"use strict";
+
 
 const ExampleImage = require('./ExampleImage');
 const { Cell } = require('fixed-data-table-2');

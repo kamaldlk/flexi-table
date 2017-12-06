@@ -52,7 +52,7 @@ export const ignoreKeyCodes = {
 
 
 export function isCommand (e) {
-  return (e.metaKey || e.ctrlKey) && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 88) ||
+  return ((e.metaKey || e.ctrlKey) && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 88)) ||
           (e.keyCode === 8 || e.keyCode === 46);
 }
 
