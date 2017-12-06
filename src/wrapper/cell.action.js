@@ -244,7 +244,6 @@ class CellAction extends React.Component {
   }
 
   render () {
-    console.log('this.state.data : this.props.data',this.state.data)
     return (
       <div
         style={ [Styles.Stretch, Styles.Unselectable] }
