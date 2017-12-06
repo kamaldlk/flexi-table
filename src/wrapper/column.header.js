@@ -33,7 +33,7 @@ class ColumnHeader extends React.Component {
       <div
         { ...props }
         style={ this._getStyle() }>
-        { this.props.column.label || this.props.column.columnKey }
+        { this.props.column.name|| this.props.column.columnKey }
       </div>
     );
   }

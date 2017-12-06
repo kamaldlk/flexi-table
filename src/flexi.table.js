@@ -52,7 +52,6 @@ class FlexiTable extends Component {
     data[maxRows - 1] = data[maxRows - 1];
     data = data.fill({}, props.defaultData.length, maxRows)
                 .map(d => { return { data: d }; });
-
     data = fromJS(data);
     data = this._dataWithErrors(props.rowValidator, columns, data);
 
@@ -938,12 +937,12 @@ class FlexiTable extends Component {
   }
 
 
-  _cellRenderer = (cellKey, row, rowIndex, column, width, cellData) => {
+  _cellRenderer = (cellKey, row, rowIndex, column, width) => {
+   var cellData =  this.state.data.get(rowIndex).get('data').get(cellKey);
     const columnData = column.get('column');
     const columnIndex = column.get('__index');
     const sel = row.get('selection') || {};
     const copySel = row.get('copySelection') || {};
-
     //  Selection
     const focused = sel.startRow === rowIndex && sel.startCol === columnIndex;
     const selected = inBetweenArea(rowIndex, columnIndex, sel.startRow, sel.endRow, sel.startCol, sel.endCol);
@@ -1037,7 +1036,7 @@ class FlexiTable extends Component {
     this.state.columns.forEach((column, i) => {
       const columnData = column.get('column');
       columnData.columnData = column;
-      columnData.cell = (cell) =>  this._cellRenderer(cell.columnKey, this.state.data.get(i), cell.rowIndex, this.state.columns[0], cell.width);
+      columnData.cell = (cell) =>  this._cellRenderer(cell.columnKey, this.state.data.get(i), cell.rowIndex, this.state.columns[i ], cell.width);
       columnData.header = (cell) => this._headerRenderer(this.state.columns[i], cell.columnKey, cell.height, cell.width);
       columnData.width = this.state.columnWidthOverrides[columnData.columnKey] || columnData.width || 150;
       columnData.allowCellsRecycling = false;
@@ -1051,51 +1050,13 @@ class FlexiTable extends Component {
       columns.push(
         <Column
           { ...columnData }
-         // cell={cell => {this.state.data.get(cell.rowIndex).get(cell.columnKey)}}
-          //cell={cell => this._cellDataGetter(cell.rowIndex, cell.columnKey, this.state.data.get(0))}
           key={ columnData.columnKey }
           />
       );
     });
-
-
-    // this.state.columns.forEach(column => {
-    //   console.log('column',column);
-    //   columns.push(
-    //     <Column
-    //       key={column.columnKey}
-    //       columnKey='___index'
-    //       //columnKey={column.columnKey}
-    //       flexGrow={2}
-    //       header={<Cell>{column.label}</Cell>}
-    //       cell={cell => this.getCell(cell.rowIndex, cell.columnKey)}
-    //       width={10 + 14 * ( this.state.data.size + '').length }
-    //       fixed={true}
-    //     />);
-    // });
     return columns;
   }
  
-  // getCell(rowIndex, columnKey) {
-  //   let isCellHighlighted = this.state.longPressedRowIndex === rowIndex;
-      
-  //   let rowStyle = {
-  //     backgroundColor: isCellHighlighted ? 'yellow' : 'transparent',
-  //     width: '100%',
-  //     height: '100%'
-  //   } 
-   
-  //   return <TextCell style={rowStyle}
-  //     data={this.state.data}
-  //     rowIndex={rowIndex}
-  //     columnKey={columnKey}
-  //     columnKey={columnKey} />;
-  // }
-
-  // getSize() {
-  //   return this.size;
-  // }
-
   _getErrorPopover () {
     const showError = this.state.showError;
     if (!showError) {

@@ -94,15 +94,14 @@ import FlexiTable from './flexi.table';
 //   };
 
 var columns = [
-  { label: 'ID Number', columnKey: 'id_no', required: false, fixed: true },
-  { label: 'Employee Name', columnKey: 'name', required: false, fixed: true, width: 150 },
-  { label: 'Job Title', columnKey: 'jobTitle'},
-  { label: 'Email Address', columnKey: 'email'} ,
-  { label: 'Salary', columnKey: 'salary' }
+  { name: 'ID Number', columnKey: 'id_no', required: false, fixed: true },
+  { name: 'Employee Name', columnKey: 'name', required: false, fixed: true, width: 150 },
+  { name: 'Job Title', columnKey: 'jobTitle'},
+  { name: 'Email Address', columnKey: 'email'} ,
+  { name: 'Salary', columnKey: 'salary' }
 ];
 
 var rows = [{name: 'John', jobTitle: 'bos'}, {name: 'Zebra', email: 'sam', salary: 500}, {name: 'Ali'}];
-var rowCount = 20;
-
+var rowCount = 10;
 
 ReactDOM.render(<FlexiTable columns={columns} defaultData={rows} rowCount={rowCount} />, document.getElementById('root'));
