@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'; 
+import Radium from 'radium';
 import Styles from '../stylecomponent/';
 
 class Menu extends React.Component {
@@ -15,7 +16,7 @@ class Menu extends React.Component {
       return (
         <div
           key={i}
-          style={ Styles.Menu.item }
+          style={ Styles.ContextMenu.item }
           onClick={ item.onClick } >
           { item.label }
         </div>
@@ -25,7 +26,7 @@ class Menu extends React.Component {
 
   render () {
     return (
-      <div style={ Styles.Menu.base }>
+      <div style={ Styles.ContextMenu.base }>
         { this._getItems() }
       </div>
     );
@@ -36,4 +37,4 @@ Menu.propTypes = {
   items: PropTypes.array
 };
 
-export default Menu;
+export default Radium(Menu);

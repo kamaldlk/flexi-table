@@ -7,7 +7,6 @@ var faker = require('faker');
 class FakeObjectDataListStore {
   constructor(/*number*/ data){
     this.data = data;
-   // console.log('sssss',this.data);
     this.size = this.data.Rows.length;
     this._cache = [];
   }

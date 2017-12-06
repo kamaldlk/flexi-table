@@ -123,7 +123,7 @@ class TextCell extends React.PureComponent {
     const {data, rowIndex, columnKey, ...props} = this.props;
     return (
       <Cell {...props}>
-        {data.getObjectAt(rowIndex)[columnKey]}
+        {data.get(rowIndex).get(columnKey)}
       </Cell>
     );
   }

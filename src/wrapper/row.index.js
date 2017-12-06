@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types'; 
+import Radium from 'radium';
 import tinycolor from 'tinycolor2';
 import Styles from '../stylecomponent';
 
 class RowIndex extends React.Component {
 
-  _getStyle = () => {
+  getStyle = () => {
     const selected = this.props.selected;
     const errors = this.props.errors;
     const hasErrors = errors && Object.keys(errors).length > 0;
@@ -30,7 +31,7 @@ class RowIndex extends React.Component {
     return (
       <div
         { ...this.props }
-        style={ this._getStyle() }>
+        style={ this.getStyle() }>
         { this.props.index == null ? '' : this.props.index + 1 }
       </div>
     );
@@ -47,7 +48,8 @@ RowIndex.propTypes = {
 };
 
 RowIndex.defaultProps = {
+  
   selectedFactor: Styles.Colors.selectedFactor
 };
 
-export default RowIndex;
+export default Radium(RowIndex);

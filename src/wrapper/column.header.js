@@ -1,6 +1,7 @@
 import React from 'react';
 import tinycolor from 'tinycolor2';
 import PropTypes from 'prop-types';
+import Radium from 'radium';
 import Styles from '../stylecomponent';
 
 class ColumnHeader extends React.Component {
@@ -27,11 +28,13 @@ class ColumnHeader extends React.Component {
   }
 
   render () {
+    console.log('this.props.column.label',this.props.column.label)
     return (
       <div
         { ...this.props }
+        
         style={ this._getStyle() }>
-        { this.props.column.label || this.props.column.dataKey }
+        { this.props.column.label || this.props.column.columnKey}
       </div>
     );
   }
@@ -49,4 +52,4 @@ ColumnHeader.defaultProps = {
   selectedFactor: Styles.Colors.selectedFactor
 };
 
-export default ColumnHeader;
+export default Radium(ColumnHeader);

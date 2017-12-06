@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
+import Radium from 'radium';
 import Styles from '../stylecomponent';
 import { isEqualObject } from './helper';
 
@@ -309,4 +310,4 @@ CellAction.propTypes = {
   onContextMenu: PropTypes.func
 };
 
-export default CellAction;
+export default Radium(CellAction);

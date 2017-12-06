@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aphrodite": "^1.2.5",
     "clipboard-js": "^0.3.6",
     "faker": "^4.1.0",
     "fixed-data-table": "^0.6.5",
@@ -10,6 +11,7 @@
     "immutable": "^3.8.2",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
+    "radium": "^0.19.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",

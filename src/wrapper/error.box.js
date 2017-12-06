@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'; 
+import Radium from 'radium';
 import Styles from '../stylecomponent/';
 
 class ErrorBox extends React.Component {
@@ -40,4 +41,4 @@ ErrorBox.propTypes = {
   getStyle: PropTypes.func
 };
 
-export default ErrorBox;
+export default Radium(ErrorBox);
