@@ -39,6 +39,7 @@ class AutoPosition extends React.Component {
     style.left = left;
     style.top = top;
 
+    console.log('style', style);
     return style;
   }
 

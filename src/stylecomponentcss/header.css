@@ -1,0 +1,11 @@
+.header {
+  textAlign: 'center';
+  cursor: 'default';
+  display: 'block';
+  padding: '6px';
+  width: 'calc(100% - 12px)';
+  height: '100%';
+  borderStyle: 'solid';
+  borderColor: 'red';
+  borderWidth: '1px'
+}

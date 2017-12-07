@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Radium from 'radium';
 import tinycolor from 'tinycolor2';
 import Styles from '../stylecomponent';
-
+import st from '../index.css';
+console.log('st',st)
 class RowIndex extends React.Component {
 
   _getStyle = () => {
@@ -29,10 +30,12 @@ class RowIndex extends React.Component {
 
   render () {
     const {getStyle,selectedFactor, ...props} = this.props;
+    console.log('style', JSON.stringify(this._getStyle()));
     return (
       <div
         { ...props }
-        style={ this._getStyle() }>
+        
+        className={`${Object.keys(st)} `}>
         { this.props.index == null ? '' : this.props.index + 1 }
       </div>
     );

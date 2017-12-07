@@ -13,3 +13,30 @@ body {
   height: 100%;
   width: 100%;
 }
+
+.t1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.t2 {
+  textAlign: center;
+  cursor: default;
+  display: block;
+  padding: 6px;
+  width: calc(100% - 12px);
+  height: 100%;
+  borderStyle: solid;
+  borderColor: rgb(217, 217, 217);
+  borderWidth: 1px;
+}
+.t3{
+  outline: none;
+  userSelect: none;
+  cursor: default;
+}
+.t4 {
+  background: #f7f7f7;
+}
